@@ -1,0 +1,12 @@
+прописать строчки ниже в programmers.txt для arduino ide 
+(C:\Users\Alex\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.6.20)
+
+olimexisp.name=Olimex ISP500
+olimexisp.communication=serial
+olimexisp.protocol=stk500v2
+olimexisp.program.tool=avrdude
+olimexisp.program.extra_params=-P{serial.port}
+
+установить поддержку атмеги:
+
+https://mcudude.github.io/MegaCore/package_MCUdude_MegaCore_index.json
