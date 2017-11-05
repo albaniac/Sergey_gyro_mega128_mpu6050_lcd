@@ -22,7 +22,7 @@ uint8_t i2cData[14]; // Buffer for I2C data
 //==============================================================================================
 //==============================================================================================
 //==============================================================================================
-void gyro_kalman_setup(){
+int gyro_kalman_setup(){
   Wire.begin();
 #if ARDUINO >= 157
   Wire.setClock(400000UL); // Set I2C frequency to 400kHz
@@ -39,7 +39,8 @@ void gyro_kalman_setup(){
 
   while (i2cRead(0x75, i2cData, 1));
   if (i2cData[0] != 0x68) { // Read "WHO_AM_I" register
-    Serial.print(F("Error reading sensor"));
+    //Serial.print(F("Error reading sensor"));
+    return 1;
     while (1);
   }
 
@@ -70,6 +71,7 @@ void gyro_kalman_setup(){
   compAngleY = pitch;
 
   timer = micros();  
+  return 0;
 }
 //==============================================================================================
 //==============================================================================================
@@ -77,7 +79,7 @@ void gyro_kalman_setup(){
 //==============================================================================================
 //==============================================================================================
 void gyro_kalman_get_position(double &Xx, double &Yy){
-    /* Update all the values */
+  //Update all the values
   while (i2cRead(0x3B, i2cData, 14));
   accX = (int16_t)((i2cData[0] << 8) | i2cData[1]);
   accY = (int16_t)((i2cData[2] << 8) | i2cData[3]);
@@ -146,7 +148,8 @@ void gyro_kalman_get_position(double &Xx, double &Yy){
   if (gyroYangle < -180 || gyroYangle > 180)
     gyroYangle = kalAngleY;
 
-  /* Print Data */
+  // Print Data 
+  /*
 #if 0 // Set to 1 to activate
   Serial.print(accX); Serial.print("\t");
   Serial.print(accY); Serial.print("\t");
@@ -171,14 +174,6 @@ void gyro_kalman_get_position(double &Xx, double &Yy){
   Serial.print(compAngleY); Serial.print("\t");
   Serial.print(kalAngleY); Serial.print("\t");
 
-
-    char str[16] = {0};
-  
-  sprintf(str, "%d   *", (int)kalAngleX);
-  LCD_Write_String(0, 0,  str);
-  sprintf(str, "%d   *", (int)kalAngleY);
-  LCD_Write_String(1, 0,  str);
-
 #if 0 // Set to 1 to print the temperature
   Serial.print("\t");
 
@@ -187,6 +182,9 @@ void gyro_kalman_get_position(double &Xx, double &Yy){
 #endif
 
   Serial.print("\r\n");
+*/
+  Xx = kalAngleX;
+  Yy = kalAngleY;
 }
 //==============================================================================================
 //==============================================================================================

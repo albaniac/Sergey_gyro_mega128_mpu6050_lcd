@@ -10,26 +10,31 @@
 void setup() {
   Serial.begin(38400);
 
+  DDRB |= (1 << 5);
+
+  char disp1[] = {"  Alexander   *"};
+  char disp2[] = {"piperr@yandex *"};
+  char disp3[] = {"Suck My Dick  *"};
+  char disp4[] = {"  Thank You!  *"};
+
+  int r = 
   gyro_kalman_setup();
-
-    DDRB |= (1 << 5);
-
-char disp1[] = {"  Alexander   *"};
-char disp2[] = {"piperr@yandex *"};
-char disp3[] = {"Suck My Dick  *"};
-char disp4[] = {"  Thank You!  *"};
+  
+  if (r){
+    sprintf(disp4, "Gyro err: %d*", r);
+  }
 
   LCD_Init();
   LCD_ligth(LCD_LIGHT_ON);
 
-
   delay(1000);
-
 
   LCD_Write_String(0, 0, disp1);
   LCD_Write_String(1, 0, disp2);
   LCD_Write_String(2, 0, disp3);
   LCD_Write_String(3, 0, disp4);
+
+  mux_setup();
 }
 
 //==============================================================================================
@@ -45,8 +50,41 @@ void loop() {
   double Xx, Yy;
 
   gyro_kalman_get_position(Xx, Yy);  
+
+  char str[16] = {0};
+  
+  sprintf(str, "X: %d   *", (int)Xx);
+  LCD_Write_String(0, 0,  str);
+  sprintf(str, "Y: %d   *", (int)Yy);
+  LCD_Write_String(1, 0,  str);
   
   delay(2);
+
+  uint32_t data;
+  mux_read(data);
+
+  uint16_t curdata = data;
+  curdata = 0 - curdata;
+  
+  sprintf(str, "Pins: %d   *", (uint32_t)curdata);
+  LCD_Write_String(2, 0,  str);
+
+  
+
+  for (char i = 15; i >= 0; i--){
+
+//    Serial.print((bool)data & (1 << i));
+//    Serial.print(" ");
+    
+    if (curdata & (1 << i)){
+      Serial.print(1);
+    }else{
+      Serial.print(0);
+    }
+    
+    
+  }
+  Serial.println("");
 }
 
 //==============================================================================================
