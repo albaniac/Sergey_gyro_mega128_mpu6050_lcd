@@ -35,6 +35,7 @@ void setup() {
   LCD_Write_String(3, 0, disp4);
 
   mux_setup();
+  buttons_init();
 }
 
 //==============================================================================================
@@ -44,11 +45,10 @@ void setup() {
 //==============================================================================================
 
 void loop() {
-
+  
   INVBIT(PORTB, 5);
 
   double Xx, Yy;
-
   gyro_kalman_get_position(Xx, Yy);  
 
   char str[16] = {0};
@@ -58,33 +58,21 @@ void loop() {
   sprintf(str, "Y: %d   *", (int)Yy);
   LCD_Write_String(1, 0,  str);
   
-  delay(2);
+  buttons_update();
 
-  uint32_t data;
-  mux_read(data);
-
-  uint16_t curdata = data;
-  curdata = 0 - curdata;
-  
-  sprintf(str, "Pins: %d   *", (uint32_t)curdata);
-  LCD_Write_String(2, 0,  str);
-
-  
-
-  for (char i = 15; i >= 0; i--){
-
-//    Serial.print((bool)data & (1 << i));
-//    Serial.print(" ");
-    
-    if (curdata & (1 << i)){
-      Serial.print(1);
-    }else{
-      Serial.print(0);
+  for (char i = 0; i < buttons_get_count(); i++){
+    bool need_println = false;
+    if (buttons_was_button_pressed(i)){
+      need_println = true;
+      Serial.print(i);
+      Serial.print(" : ");
     }
-    
-    
+    if (need_println){
+      Serial.println("");
+    }
   }
-  Serial.println("");
+
+  delay(2);
 }
 
 //==============================================================================================
