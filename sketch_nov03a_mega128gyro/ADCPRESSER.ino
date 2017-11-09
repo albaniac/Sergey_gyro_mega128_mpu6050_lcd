@@ -62,7 +62,7 @@ void buttons_init(){
 
 void buttons_update(){
   uint32_t data;
-  mux_in_read(data);
+  mux_read(data);
   uint16_t curdata = data;
 
   for (char i = 0; i < BUTTONS_COUNT; i++){
