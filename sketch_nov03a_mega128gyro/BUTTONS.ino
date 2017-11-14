@@ -7,13 +7,13 @@
 #define BUTTON_SHIFT_RIGHT_FIRST_UP 2
 #define BUTTON_SHIFT_RIGHT_FIRST_DOWN 3
 #define BUTTON_SHIFT_LEFT_LAST_UP 4
-#define BUTTON_SHIFT_LEFT_FIRST_DOWN 5
+#define BUTTON_SHIFT_LEFT_LAST_DOWN 5
 #define BUTTON_SHIFT_RIGHT_LAST_UP 6
 #define BUTTON_SHIFT_RIGHT_LAST_DOWN 7
 #define BUTTON_SHIFT_MENU_SELECT 8
 #define BUTTON_SHIFT_MENU_OK 9
 
-static const uint8_t buttons_shifts[BUTTONS_COUNT] = {
+uint8_t buttons_shifts[BUTTONS_COUNT] = {
   BUTTON_SHIFT_LEFT_FIRST_UP,
   BUTTON_SHIFT_LEFT_FIRST_DOWN, 
   BUTTON_SHIFT_RIGHT_FIRST_UP,
@@ -34,7 +34,7 @@ struct ButtonState {
   bool state;
   bool last_state;
   bool was_pressed;
-  uint8_t shift_position;
+  unsigned char  shift_position;
 };
 
 //=============================================================================================
@@ -48,7 +48,7 @@ ButtonState buttons[BUTTONS_COUNT];
 //=============================================================================================
 
 void buttons_init(){
-  for (char i = 0; i < BUTTONS_COUNT; i++){
+  for (unsigned char i = 0; i < BUTTONS_COUNT; i++){
     buttons[i].state = !BUTTON_PRESSED;
     buttons[i].last_state = !BUTTON_PRESSED;
     buttons[i].was_pressed = false;
@@ -65,7 +65,7 @@ void buttons_update(){
   mux_in_read(data);
   uint16_t curdata = data;
 
-  for (char i = 0; i < BUTTONS_COUNT; i++){
+  for (unsigned char i = 0; i < BUTTONS_COUNT; i++){
     // check pressed buttons
     if(((bool)(curdata & (1 << buttons[i].shift_position))) == BUTTON_PRESSED_PIN_STATE){
       // button pressed

@@ -72,8 +72,8 @@ int mux_out_write_one_pos_val(uint8_t pos, uint8_t pin_state){
 
   digitalWrite(mux_out_latchPin, LOW);
 
-  shiftOut(mux_out_dataPin, mux_out_clockPin, MSBFIRST, (data >> 8)); 
-  shiftOut(mux_out_dataPin, mux_out_clockPin, MSBFIRST, data);
+  shiftOut(mux_out_dataPin, mux_out_clockPin, MSBFIRST, (mux_out_oldPinValues >> 8)); 
+  shiftOut(mux_out_dataPin, mux_out_clockPin, MSBFIRST, mux_out_oldPinValues);
 
   digitalWrite(mux_out_latchPin, HIGH);
 

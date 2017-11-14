@@ -35,7 +35,7 @@ void setup() {
   LCD_Write_String(3, 0, disp4);
 
   mux_in_setup();
-  mux_out_setup()
+  mux_out_setup();
   buttons_init();
 }
 
