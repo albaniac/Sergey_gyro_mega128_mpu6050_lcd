@@ -13,7 +13,7 @@
 #define BUTTON_SHIFT_MENU_SELECT 8
 #define BUTTON_SHIFT_MENU_OK 9
 
-uint8_t buttons_shifts[BUTTONS_COUNT] = {
+static const uint8_t buttons_shifts[BUTTONS_COUNT] = {
   BUTTON_SHIFT_LEFT_FIRST_UP,
   BUTTON_SHIFT_LEFT_FIRST_DOWN, 
   BUTTON_SHIFT_RIGHT_FIRST_UP,
