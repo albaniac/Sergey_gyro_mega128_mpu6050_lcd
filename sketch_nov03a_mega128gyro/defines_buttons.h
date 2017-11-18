@@ -1,5 +1,8 @@
 // #include "defines_buttons.h"
 
+#ifndef MY_BUTTONS_DEFENITIONS_H
+#define MY_BUTTONS_DEFENITIONS_H
+
 #define BUTTON_PRESSED_PIN_STATE false
 #define BUTTON_PRESSED true
 #define BUTTONS_COUNT 10
@@ -36,3 +39,4 @@ struct ButtonState {
   BUTTON_NAME button_name;
 };
 
+#endif
