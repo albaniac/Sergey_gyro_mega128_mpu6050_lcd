@@ -1,4 +1,5 @@
 // #include "lcd_manager.h"
+
 #include "common_makros.h"
 #include "lcd.h"
 
@@ -15,27 +16,57 @@ class LCD_MANAGER {
     LCD_MANAGER(){
     };
 
-    void set_x (double x){
-      memset(&str[0][5], ' ', 6);
+    void set_x_y (double x, double y){
       sprintf(&str[0][5], "X:%4d", (int)x);
-      LCD_Write_String(0, 0, str[0]);
-    };
-    
-    void set_y (double y){
-      memset(&str[1][5], ' ', 6);
       sprintf(&str[1][5], "Y:%4d", (int)y);
-      LCD_Write_String(1, 0, str[1]);
+    };    
+    void set_left_first_weel_val (double val){
+      sprintf(&str[0][0], "%3d", (int)val);
+      str[0][3] = '%';
+    };
+    void set_left_last_weel_val (double val){
+      sprintf(&str[1][0], "%3d", (int)val);
+      str[1][3] = '%';
+    };
+    void set_right_first_weel_val (double val){
+      sprintf(&str[0][12], "%3d", (int)val);
+      str[0][15] = '%';
+    };
+    void set_right_last_weel_val (double val){
+      sprintf(&str[1][12], "%3d", (int)val);
+      str[1][15] = '%';
     };
     
-    void set_left_first_weel_val (double val){};
-    void set_left_last_weel_val (double val){};
-    void set_right_first_weel_val (double val){};
-    void set_right_last_weel_val (double val){};
-    void set_mode_name (char * mode_name){};
-    void set_menu_name (char * mode_name){
-      
+    void set_mode_name (char * mode_name){
+      clear_mode_name();
+      sprintf(&str[2][0], "%s*", mode_name);
+    };
+
+    void clear_mode_name (){
+      memset(&str[2][0], ' ', 16);
+      str[2][16] = '*';
+    };
+
+    void set_menu_name (char * menu_name){
+      clear_menu_name();
+      sprintf(&str[3][0], "%s*", menu_name);
     };  
 
+    void clear_menu_name (){
+      memset(&str[3][0], ' ', 16);
+      str[3][16] = '*';
+    };
+
+    void set_error_text (char * err_text){
+      clear_error_text();
+      sprintf(&str[3][0], "%s*", err_text);
+    };  
+
+    void clear_error_text (){
+      memset(&str[3][0], ' ', 16);
+      str[3][16] = '*';
+    }
+    
     void refresh(){
       LCD_Write_String(0, 0, &str[0][0]);
       LCD_Write_String(1, 0, &str[1][0]);
@@ -44,8 +75,8 @@ class LCD_MANAGER {
     };
 
     void init(){
-      memcpy(&str[0][0], "111%        222%*", 17);
-      memcpy(&str[1][0], "333%        444%*", 17);
+      memcpy(&str[0][0], "111% X:-179 222%*", 17);
+      memcpy(&str[1][0], "333% Y:-123 444%*", 17);
       memcpy(&str[2][0], "Suck My Dick    *", 17);
       memcpy(&str[3][0], "Thank You!      *", 17);
 

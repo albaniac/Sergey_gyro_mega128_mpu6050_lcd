@@ -1,4 +1,4 @@
-#include "lcd_manager.h"
+ #include "lcd_manager.h"
 #include "common_makros.h"
 
 //==============================================================================================
@@ -11,6 +11,12 @@ LCD_MANAGER g_lcd_manager;
 
 void setup() {
   Serial.begin(38400);
+  g_lcd_manager.init();
+
+  mux_in_setup();
+  mux_out_setup();
+  buttons_init();
+
 
   DDRB |= (1 << 5);
 
@@ -18,19 +24,17 @@ void setup() {
   gyro_kalman_setup();
   
   if (r){
-    //sprintf(disp4, "Gyro err: %d*", r);
+    g_lcd_manager.set_error_text("Gyro init error");
+  }else{
+    g_lcd_manager.set_error_text("Gyro init OK ok");
   }
 
-
-  g_lcd_manager.init();
+  
 
   delay(1000);
 
   g_lcd_manager.refresh();
 
-  mux_in_setup();
-  mux_out_setup();
-  buttons_init();
 }
 
 //==============================================================================================
@@ -46,11 +50,7 @@ void loop() {
   double Xx, Yy;
   gyro_kalman_get_position(Xx, Yy);  
 
-
-  g_lcd_manager.set_x(Xx);
-  g_lcd_manager.set_y(Yy);
-//  g_lcd_manager.set_x(tt++);
-//  g_lcd_manager.set_y(tt++);
+  g_lcd_manager.set_x_y(Xx, Yy);
 
   buttons_update();
 
@@ -66,7 +66,17 @@ void loop() {
     }
   }
 
-  delay(100);
+  g_lcd_manager.set_left_first_weel_val (tt++);
+  g_lcd_manager.set_left_last_weel_val (tt++ + 10);
+  g_lcd_manager.set_right_first_weel_val (tt + 20);
+  g_lcd_manager.set_right_last_weel_val (tt + 30);
+  
+  g_lcd_manager.refresh();
+
+
+  if (tt > 950) tt = 0;
+  
+  delay(200);
 }
 
 //==============================================================================================
