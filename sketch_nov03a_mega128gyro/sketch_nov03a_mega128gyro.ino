@@ -1,5 +1,6 @@
- #include "lcd_manager.h"
+#include "lcd_manager.h"
 #include "common_makros.h"
+#include "menu.h"
 
 //==============================================================================================
 //==============================================================================================
@@ -8,10 +9,12 @@
 //==============================================================================================
 
 LCD_MANAGER g_lcd_manager;
+MyMenu g_menu;
 
 void setup() {
   Serial.begin(38400);
   g_lcd_manager.init();
+  g_menu.init();
 
   mux_in_setup();
   mux_out_setup();
@@ -26,7 +29,7 @@ void setup() {
   if (r){
     g_lcd_manager.set_error_text("Gyro init error");
   }else{
-    g_lcd_manager.set_error_text("Gyro init OK ok");
+    g_lcd_manager.set_menu_name(g_menu.get_current_name());
   }
 
   
@@ -52,21 +55,38 @@ void loop() {
 
   g_lcd_manager.set_x_y(Xx, Yy);
 
-  
-
   Serial.println(buttons_update());
-  
+
+
   for (unsigned int i = 0; i < buttons_get_count(); i++){
-    bool need_println = false;
     if (buttons_was_button_pressed(i)){
-      need_println = true;
-      Serial.print(i);
-      Serial.print(" : ");
-    }
-    if (need_println){
-      Serial.println("");
+
+      switch (buttons_get_pressed_button_name(i)){
+        case BUTTON_MENU_OK:
+          g_lcd_manager.set_menu_name(g_menu.go_child());
+        break;
+        case BUTTON_MENU_SELECT:
+          g_lcd_manager.set_menu_name(g_menu.go_parent());
+        break;
+        case BUTTON_LEFT_FIRST_UP:
+          g_lcd_manager.set_menu_name(g_menu.go_back());
+        break;
+        case BUTTON_LEFT_FIRST_DOWN:
+          g_lcd_manager.set_menu_name(g_menu.go_next());
+        break;
+        default:
+
+        break;        
+      }
+
+
+      
+      Serial.println(i);
     }
   }
+
+
+  
 
   g_lcd_manager.set_left_first_weel_val (tt++);
   g_lcd_manager.set_left_last_weel_val (tt++ + 10);

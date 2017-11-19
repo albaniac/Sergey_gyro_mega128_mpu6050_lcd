@@ -92,6 +92,11 @@ void LCD_Init()
     _delay_ms(10);
 }
 
+void LCD_Clear_lcd(){
+    LCD_Write_Command(0x01);        //Clear LCD
+    _delay_ms(10);  
+}
+
 void LCD_Set_Position(char line, char col)
 {                          
    	char  pos;

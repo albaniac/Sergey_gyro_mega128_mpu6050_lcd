@@ -8,6 +8,7 @@
 void LCD_Write_Command(char cmd);
 void LCD_Write_Data(char dat);
 void LCD_Init();
+void LCD_Clear_lcd();
 void LCD_ligth(char light);
 void LCD_Set_Position(char line, char col);
 void LCD_Write_String(char line, char col, char *s);
