@@ -82,7 +82,7 @@ bool buttons_was_button_pressed(int num){
 //=============================================================================================
 //=============================================================================================
 
-inline char buttons_get_count(){
+inline unsigned char buttons_get_count(){
   return BUTTONS_COUNT;
 }
 

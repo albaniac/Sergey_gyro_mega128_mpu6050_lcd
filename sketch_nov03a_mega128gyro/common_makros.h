@@ -1,3 +1,5 @@
+//#include "common_makros.h"
+
 #ifndef COMMON_MAKROS_H
 #define COMMON_MAKROS_H
 
