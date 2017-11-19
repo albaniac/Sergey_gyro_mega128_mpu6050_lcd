@@ -21,10 +21,14 @@ void led_blink(){
 void send_message(){
   Serial.println("message from task");
 }
+void send_message2(){
+  Serial.println("message2 from2 task2");
+}
 
 void update_hyroscope(){
-  static double Xx, Yy;
-  gyro_kalman_get_position(Xx, Yy);   
+  double Xx, Yy;
+  gyro_kalman_get_position(Xx, Yy); 
+//  g_lcd_manager.set_x_y(Xx, Yy);  
 }
 
 void update_buttons(){
@@ -55,12 +59,12 @@ void update_buttons(){
 }
 
 void print_to_lcd(){
+  
   static double tt = 0;
   
   double Xx, Yy;
-  gyro_kalman_get_position(Xx, Yy);  
-
-  g_lcd_manager.set_x_y(Xx, Yy);
+  gyro_kalman_get_position(Xx, Yy); 
+  g_lcd_manager.set_x_y(Xx, Yy);  
   
   g_lcd_manager.set_left_first_weel_val (tt++);
   g_lcd_manager.set_left_last_weel_val (tt++ + 10);
@@ -75,29 +79,29 @@ void print_to_lcd(){
 //==============================================================================================
 
 void setup() {
-  Serial.begin(38400);
+  Serial.begin(115200);
+
+  DDRB |= (1 << 5);
+
+  int r = gyro_kalman_setup();
+
   g_lcd_manager.init();
   g_menu.init();
   g_timer.init();
 
 
-  g_timer.add_task(led_blink, 100, true);
-  g_timer.add_task(send_message, 100, true);
-  g_timer.add_task(update_buttons, 5, true);
-  g_timer.add_task(print_to_lcd, 25, true);
-  g_timer.add_task(update_hyroscope, 1, true);
+  g_timer.add_task(led_blink, 1000, true);
+//  g_timer.add_task(send_message, 100000, true);
+//  g_timer.add_task(send_message2, 10000, true);
+  g_timer.add_task(update_buttons, 5000, true);
+  g_timer.add_task(print_to_lcd, 3000, true);
+  g_timer.add_task(update_hyroscope, 30, true);
 
 
 
   mux_in_setup();
   mux_out_setup();
   buttons_init();
-
-
-  DDRB |= (1 << 5);
-
-  int r = 
-  gyro_kalman_setup();
   
   if (r){
     g_lcd_manager.set_error_text((char *)"Gyro init error");
@@ -127,8 +131,8 @@ void loop() {
   
   //INVBIT(PORTB, 5);
 
-
-  //delay(200);
+  //update_hyroscope();
+  //delay(50);
 }
 
 //==============================================================================================

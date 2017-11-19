@@ -89,7 +89,7 @@ void gyro_kalman_get_position(double &Xx, double &Yy){
   gyroY = (int16_t)((i2cData[10] << 8) | i2cData[11]);
   gyroZ = (int16_t)((i2cData[12] << 8) | i2cData[13]);;
 
-  double dt = (double)(micros() - timer) / 1000000; // Calculate delta time
+  double dt = ((double)(micros() - timer) / 1000000) * 64; // Calculate delta time
   timer = micros();
 
   // Source: http://www.freescale.com/files/sensors/doc/app_note/AN3461.pdf eq. 25 and eq. 26
@@ -161,28 +161,28 @@ void gyro_kalman_get_position(double &Xx, double &Yy){
 
   Serial.print("\t");
 #endif
+*/
+  Serial.print(roll); Serial.print("\t");Serial.print("  ");
+  Serial.print(gyroXangle); Serial.print("\t");Serial.print("  ");
+  Serial.print(compAngleX); Serial.print("\t");Serial.print("  ");
+  Serial.print(kalAngleX); Serial.print("\t");Serial.print("  ");
 
-  Serial.print(roll); Serial.print("\t");
-  Serial.print(gyroXangle); Serial.print("\t");
-  Serial.print(compAngleX); Serial.print("\t");
-  Serial.print(kalAngleX); Serial.print("\t");
+  Serial.print("\t");Serial.print("  ");
 
-  Serial.print("\t");
-
-  Serial.print(pitch); Serial.print("\t");
-  Serial.print(gyroYangle); Serial.print("\t");
-  Serial.print(compAngleY); Serial.print("\t");
-  Serial.print(kalAngleY); Serial.print("\t");
+  Serial.print(pitch); Serial.print("\t");Serial.print("  ");
+  Serial.print(gyroYangle); Serial.print("\t");Serial.print("  ");
+  Serial.print(compAngleY); Serial.print("\t");Serial.print("  ");
+  Serial.print(kalAngleY); Serial.print("\t");Serial.print("  ");
 
 #if 0 // Set to 1 to print the temperature
-  Serial.print("\t");
+  Serial.print("\t");Serial.print("  ");
 
   double temperature = (double)tempRaw / 340.0 + 36.53;
   Serial.print(temperature); Serial.print("\t");
 #endif
 
   Serial.print("\r\n");
-*/
+
   Xx = kalAngleX;
   Yy = kalAngleY;
 }

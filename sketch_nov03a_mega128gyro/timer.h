@@ -31,6 +31,7 @@ class MySoftTimer {
   public:
   
     void init();
+    
 	  bool add_task(TTask task, long period, bool is_repeted){
   	  for (unsigned char i = 0; i < MAX_TASK_COUNT; i++){
   	    if (tasks[i].task == 0){
