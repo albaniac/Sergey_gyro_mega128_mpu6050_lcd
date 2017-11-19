@@ -40,14 +40,17 @@ void buttons_init(){
 //=============================================================================================
 //=============================================================================================
 
-void buttons_update(){
+uint16_t buttons_update(){
   uint32_t data;
   mux_in_read(data);
   uint16_t curdata = data;
+  curdata = ~curdata; 
+
+  uint16_t point = 1;
 
   for (unsigned char i = 0; i < BUTTONS_COUNT; i++){
     // check pressed buttons
-    if(((bool)(curdata & (1 << buttons[i].shift_position))) == BUTTON_PRESSED_PIN_STATE){
+    if((curdata & (point << buttons[i].shift_position)) > 0){
       // button pressed
       if (buttons[i].last_state == !BUTTON_PRESSED){
         buttons[i].was_pressed = true;
@@ -59,6 +62,7 @@ void buttons_update(){
       buttons[i].state = !BUTTON_PRESSED;
     }
   }
+  return curdata;
 }
 
 //=============================================================================================

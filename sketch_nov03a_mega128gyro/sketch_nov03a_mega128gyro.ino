@@ -52,9 +52,11 @@ void loop() {
 
   g_lcd_manager.set_x_y(Xx, Yy);
 
-  buttons_update();
+  
 
-  for (char i = 0; i < buttons_get_count(); i++){
+  Serial.println(buttons_update());
+  
+  for (unsigned int i = 0; i < buttons_get_count(); i++){
     bool need_println = false;
     if (buttons_was_button_pressed(i)){
       need_println = true;
