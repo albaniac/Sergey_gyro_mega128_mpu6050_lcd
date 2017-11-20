@@ -14,23 +14,32 @@ MyMenu g_menu;
 //==============================================================================================
 //==============================================================================================
 
+const long led_blink_period = 500;
 void led_blink(){
   INVBIT(PORTB, 5);
+  g_timer.add_task(led_blink, led_blink_period);
 }
 
+const long send_message_period = 1000;
 void send_message(){
   Serial.println("message from task");
-}
-void send_message2(){
-  Serial.println("message2 from2 task2");
+  g_timer.add_task(send_message, send_message_period);
 }
 
+const long send_message2_period = 200;
+void send_message2(){
+  Serial.println("message2 from2 task2");
+  g_timer.add_task(send_message2, send_message2_period);
+}
+
+const long update_hyroscope_period = 20;
 void update_hyroscope(){
   double Xx, Yy;
   gyro_kalman_get_position(Xx, Yy); 
-//  g_lcd_manager.set_x_y(Xx, Yy);  
+  g_timer.add_task(update_hyroscope, update_hyroscope_period);
 }
 
+const long update_buttons_period = 200;
 void update_buttons(){
   
   buttons_update();
@@ -56,8 +65,11 @@ void update_buttons(){
       }
     }
   }
+
+  g_timer.add_task(update_buttons, update_buttons_period);
 }
 
+const long print_to_lcd_period = 300;
 void print_to_lcd(){
   
   static double tt = 0;
@@ -74,6 +86,8 @@ void print_to_lcd(){
   g_lcd_manager.refresh();
 
   if (tt > 950) tt = 0;
+
+  g_timer.add_task(print_to_lcd, print_to_lcd_period);
 }
 
 //==============================================================================================
@@ -87,17 +101,18 @@ void setup() {
 
   g_lcd_manager.init();
   g_menu.init();
+  
+
+
+  g_timer.add_task(led_blink, led_blink_period);
+  g_timer.add_task(send_message, send_message_period);
+  g_timer.add_task(send_message2, send_message2_period);
+  g_timer.add_task(update_buttons, update_buttons_period);
+  g_timer.add_task(print_to_lcd, print_to_lcd_period);
+  g_timer.add_task(update_hyroscope, update_hyroscope_period);
+  
+
   g_timer.init();
-
-
-  g_timer.add_task(led_blink, 1000, true);
-//  g_timer.add_task(send_message, 100000, true);
-//  g_timer.add_task(send_message2, 10000, true);
-  g_timer.add_task(update_buttons, 5000, true);
-  g_timer.add_task(print_to_lcd, 3000, true);
-  g_timer.add_task(update_hyroscope, 30, true);
-
-
 
   mux_in_setup();
   mux_out_setup();

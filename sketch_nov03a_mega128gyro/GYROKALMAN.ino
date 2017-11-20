@@ -162,6 +162,8 @@ void gyro_kalman_get_position(double &Xx, double &Yy){
   Serial.print("\t");
 #endif
 */
+
+/*
   Serial.print(roll); Serial.print("\t");Serial.print("  ");
   Serial.print(gyroXangle); Serial.print("\t");Serial.print("  ");
   Serial.print(compAngleX); Serial.print("\t");Serial.print("  ");
@@ -182,7 +184,7 @@ void gyro_kalman_get_position(double &Xx, double &Yy){
 #endif
 
   Serial.print("\r\n");
-
+*/
   Xx = kalAngleX;
   Yy = kalAngleY;
 }
