@@ -27,7 +27,7 @@ inline void setupTIMER2 (void)
   //TCCR2 = (1<<CS20 | 1<<CS21 | 1<<CS22);
   TCCR2 = 1<<CS21; // 010 = 2
 
-  long pr = (long)(1.0 / ((1.0 / ((16000000.0 / 8.0) / 255.0)) * 1000.0)); 
+  long pr = (long)(1.0 / ((1.0 / ((16000000.0 / 8.0) / 255.0)) * 1000.0)); // must be 2 then 8, but speed was in 4 times slower
   g_timer.set_my_prescaller(pr);
   
   TIMSK |= 1<< TOIE2;

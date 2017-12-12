@@ -50,13 +50,10 @@ void update_buttons(){
         case BUTTON_MENU_OK:
           g_lcd_manager.set_menu_name(g_menu.go_child());
         break;
-        case BUTTON_MENU_SELECT:
+        case BUTTON_MENU_BACK:
           g_lcd_manager.set_menu_name(g_menu.go_parent());
         break;
-        case BUTTON_LEFT_FIRST_UP:
-          g_lcd_manager.set_menu_name(g_menu.go_back());
-        break;
-        case BUTTON_LEFT_FIRST_DOWN:
+        case BUTTON_MENU_SCROLL:
           g_lcd_manager.set_menu_name(g_menu.go_next());
         break;
         default:

@@ -29,10 +29,12 @@ void buttons_init(){
   buttons[6].shift_position = BUTTON_SHIFT_RIGHT_LAST_UP;
   buttons[7].button_name = BUTTON_RIGHT_LAST_DOWN;
   buttons[7].shift_position = BUTTON_SHIFT_RIGHT_LAST_DOWN;
-  buttons[8].button_name = BUTTON_MENU_SELECT;
-  buttons[8].shift_position = BUTTON_SHIFT_MENU_SELECT;
+  buttons[8].button_name = BUTTON_MENU_BACK;
+  buttons[8].shift_position = BUTTON_SHIFT_MENU_BACK;
   buttons[9].button_name = BUTTON_MENU_OK;
   buttons[9].shift_position = BUTTON_SHIFT_MENU_OK;
+  buttons[10].button_name = BUTTON_MENU_SCROLL;
+  buttons[10].shift_position = BUTTON_SHIFT_MENU_SCROLL;
 
 }
 
