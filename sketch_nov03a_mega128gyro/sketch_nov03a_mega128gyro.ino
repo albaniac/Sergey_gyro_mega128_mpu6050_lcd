@@ -3,6 +3,7 @@
 #include "menu.h"
 #include "timer.h"
 
+#include <avr/wdt.h>
 //==============================================================================================
 //==============================================================================================
 //==============================================================================================
@@ -13,6 +14,10 @@ MyMenu g_menu;
 //==============================================================================================
 //==============================================================================================
 //==============================================================================================
+const long watch_dog_period = 500;
+void reset_watch_dog(){
+  wdt_reset();
+}
 
 const long led_blink_period = 500;
 void led_blink(){
@@ -100,15 +105,17 @@ void setup() {
   g_menu.init();
   
 
-
   g_timer.add_task(led_blink, led_blink_period);
   g_timer.add_task(send_message, send_message_period);
   g_timer.add_task(send_message2, send_message2_period);
   g_timer.add_task(update_buttons, update_buttons_period);
   g_timer.add_task(print_to_lcd, print_to_lcd_period);
   g_timer.add_task(update_hyroscope, update_hyroscope_period);
-  
+  g_timer.add_task(reset_watch_dog, watch_dog_period);
 
+
+  wdt_reset();
+  wdt_enable(WDTO_1S);
   g_timer.init();
 
   mux_in_setup();

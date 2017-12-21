@@ -156,7 +156,7 @@ class MyMenu {
 
       link_back_next(&node_rf_set_max, &node_rf_set_min);
 
-      node_ll_weel.name = "Left Last Weel"
+      node_ll_weel.name = "Left Last Weel";
       link_parent_child(&node_weel, &node_ll_weel);
       link_back_next(&node_rf_weel, &node_ll_weel);
 
@@ -169,7 +169,7 @@ class MyMenu {
 
       link_back_next(&node_ll_set_max, &node_ll_set_min);
       
-      node_rl_weel.name = "Right Last Weel"
+      node_rl_weel.name = "Right Last Weel";
       link_parent_child(&node_weel, &node_rl_weel);
       link_back_next(&node_ll_weel, &node_rl_weel);
 
