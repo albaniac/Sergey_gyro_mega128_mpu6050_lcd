@@ -2,6 +2,7 @@
 #ifndef MY_MUX74CH165READ_H
 #define MY_MUX74CH165READ_H
 
+#include <Arduino.h>
 // SRC: https://playground.arduino.cc/Code/ShiftRegSN74HC165N
 // SRC for mega128: https://github.com/MCUdude/MegaCore
 
@@ -15,7 +16,7 @@ class MUX74CH165Reader {
 public:
 	MUX74CH165Reader();
 	void Init();
-	int Read(MUX_IN_BYTES_VAL_T &data)
+	int Read(MUX_IN_BYTES_VAL_T &data);
 private:	
 	int mux_in_ploadPin_;
 	int mux_in_clockEnablePin_;
@@ -23,7 +24,7 @@ private:
 	int mux_in_clockPin_;
 	MUX_IN_BYTES_VAL_T pinValues_;
 	MUX_IN_BYTES_VAL_T oldPinValues_;
-}
+};
 
 extern MUX74CH165Reader* g_mux_in_p;
 #endif

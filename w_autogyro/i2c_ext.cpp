@@ -1,4 +1,5 @@
 #include "i2c_ext.h"
+#include <Arduino.h>
 
 uint8_t i2cWrite(uint8_t registerAddress, uint8_t data, bool sendStop) {
   return i2cWrite(registerAddress, &data, 1, sendStop); // Returns 0 on success

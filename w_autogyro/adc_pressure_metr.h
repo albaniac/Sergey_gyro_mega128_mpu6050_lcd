@@ -2,6 +2,8 @@
 #ifndef MY_ADC_PRESSURE_METR_H
 #define MY_ADC_PRESSURE_METR_H
 
+#include <Arduino.h>
+
 #define ADC_COUNT 5
 #define ADC_MAX 1023
 #define ADC_MIN 0
@@ -36,14 +38,13 @@ typedef struct ADC_MAXMIN {
 } ADC_MAXMIN_S;
 
 class ADC_Presser {
-  
-  ADC_MAXMIN_S adc_maxmin [ADC_COUNT];
-    
+public:
   ADC_Presser();
-  
   void Init();
 
-
+private:
+ 
+  ADC_MAXMIN_S adc_maxmin [ADC_COUNT];
 };
 
 extern ADC_Presser* g_adc_presser_p;

@@ -3,13 +3,14 @@
 #define MY_BUTTONS_H
 
 #include "buttons_defines.h"
+#include <Arduino.h>
 
 class Buttons {
 public:
 	Buttons();
 	void Init();
 	uint16_t Update();
-	bool WasButton_pressed(int num);
+	bool WasButtonPressed(int num);
 	unsigned char GetCount();
 	BUTTON_NAME GetPressedButtonName(int num);
 private:

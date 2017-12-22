@@ -5,6 +5,8 @@
 #include "timer.h"
 #include "gyro_kalman.h"
 #include "buttons.h"
+#include "mux74ch165read.h"
+#include "mux74ch595dwrite.h"
 
 #include <avr/wdt.h>
 
@@ -37,7 +39,7 @@ void send_message2(){
 const long update_hyroscope_period = 20;
 void update_hyroscope(){
   double Xx, Yy;
-  gyro_kalman_get_position(Xx, Yy); 
+  g_gyro_kalman_p->GetPosition(Xx, Yy); 
   g_timer_p->AddTask(update_hyroscope, update_hyroscope_period);
 }
 //==============================================================================================
@@ -65,7 +67,7 @@ void update_buttons(){
     }
   }
 
-  g_timer_P->AddTask(update_buttons, update_buttons_period);
+  g_timer_p->AddTask(update_buttons, update_buttons_period);
 }
 //==============================================================================================
 const long print_to_lcd_period = 300;
@@ -116,9 +118,9 @@ void setup() {
   wdt_enable(WDTO_1S);
   g_timer_p->Init();
 
-  mux_in_setup();
-  mux_out_setup();
-  buttons_init();
+  g_mux_in_p->Init();
+  g_mux_out_p->Init();
+  g_buttons_p->Init();
   
   if (r){
     g_lcd_manager_p->SetErrorText((char *)"Gyro init error");

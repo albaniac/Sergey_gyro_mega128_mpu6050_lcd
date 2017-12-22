@@ -2,6 +2,8 @@
 #ifndef MY_MUX74CH595DWRITE_H
 #define MY_MUX74CH595DWRITE_H
 
+#include <Arduino.h>
+
 #define MUX_OUT_BYTES_VAL_T uint16_t
 
 class MUX74CH595DWriter {
@@ -17,7 +19,7 @@ private:
 	int mux_out_clockPin_; 
 
 	MUX_OUT_BYTES_VAL_T mux_out_oldPinValues_;
-}
+};
 
 extern MUX74CH595DWriter* g_mux_out_p;
 #endif

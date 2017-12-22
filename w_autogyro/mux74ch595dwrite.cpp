@@ -1,8 +1,9 @@
 #include "mux74ch595dwrite.h"
-#include <Arduino>
+#include "common_makros.h"
+#include <Arduino.h>
 //==============================================================================================
 static MUX74CH595DWriter g_mux_out;
-MUX74CH595DWriter* g_mux_out_p = g_mux_out;
+MUX74CH595DWriter* g_mux_out_p = &g_mux_out;
 //==============================================================================================
 // SRC: http://arduino.ru/Tutorial/registr_74HC595
 // SRC: http://arduino.ru/Reference/ShiftOut
@@ -19,7 +20,7 @@ MUX74CH595DWriter::MUX74CH595DWriter(){
 	
 }
 //==============================================================================================
-int MUX74CH595DWriter::Init(){
+void MUX74CH595DWriter::Init(){
 	
 	
   // Initialize our digital pins...
@@ -33,8 +34,7 @@ int MUX74CH595DWriter::Init(){
 
   digitalWrite(mux_out_clockPin_, LOW);
   digitalWrite(mux_out_latchPin_, HIGH);
-  
-  return 0;
+
 }
 //==============================================================================================
 int MUX74CH595DWriter::WriteVal(MUX_OUT_BYTES_VAL_T data){
@@ -51,7 +51,7 @@ int MUX74CH595DWriter::WriteVal(MUX_OUT_BYTES_VAL_T data){
   return 0;
 }
 //==============================================================================================
-int WriteOnePosVal(uint8_t pos, uint8_t pin_state){
+int MUX74CH595DWriter::WriteOnePosVal(uint8_t pos, uint8_t pin_state){
 
   if (pin_state == HIGH){
     UPBIT(mux_out_oldPinValues_, pos);

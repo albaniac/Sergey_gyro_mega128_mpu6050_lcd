@@ -4,6 +4,8 @@
 
 #define RESTRICT_PITCH // Comment out to restrict roll to ±90deg instead - please read: http://www.freescale.com/files/sensors/doc/app_note/AN3461.pdf
 
+#include <Kalman.h>
+#include <Arduino.h>
 
 class GyroKalman {
 public:

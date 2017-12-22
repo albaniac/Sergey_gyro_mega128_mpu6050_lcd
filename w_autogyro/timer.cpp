@@ -9,7 +9,7 @@ MySoftTimer* g_timer_p = &g_timer;
 ISR (TIMER2_OVF_vect)
 {
 // cli();
-  g_timer.touch_timer();
+  g_timer_p->TouchTimer();
 // sei();
 }
 //==============================================================================================
@@ -23,7 +23,7 @@ inline void setupTIMER2 (void)
   TCCR2 = 1<<CS21; // 010 = 2
 
   long pr = (long)(1.0 / ((1.0 / ((16000000.0 / 8.0) / 255.0)) * 1000.0)); // must be 2 then 8, but speed was in 4 times slower
-  g_timer.set_my_prescaller_(pr);
+  g_timer_p->SetMyPrescaller(pr);
   
   TIMSK |= 1<< TOIE2;
   //TIMSK |= (1<< TOIE2 | 1<<OCIE2);

@@ -6,6 +6,10 @@
 static GyroKalman g_gyro_kalman;
 extern GyroKalman * g_gyro_kalman_p = &g_gyro_kalman;
 //=======================================================================================
+GyroKalman::GyroKalman(){
+  
+}
+//=======================================================================================
 int GyroKalman::Init(){
   Wire.begin();
 #if ARDUINO >= 157

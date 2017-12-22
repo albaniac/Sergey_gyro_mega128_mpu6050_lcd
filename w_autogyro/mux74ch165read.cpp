@@ -1,8 +1,8 @@
 #include "mux74ch165read.h"
-#include <Arduino>
+#include <Arduino.h>
 //==============================================================================================
 static MUX74CH165Reader g_mux_in;
-MUX74CH165Reader* g_mux_in_p = g_mux_in;
+MUX74CH165Reader* g_mux_in_p = &g_mux_in;
 //==============================================================================================
 #define MUX_IN_LATCH_PL  3      // PE3 // Connects to Parallel load pin the 165
 #define MUX_IN_CE       5       // PE5 // Connects to Clock Enable pin the 165
@@ -19,7 +19,7 @@ MUX74CH165Reader::MUX74CH165Reader(){
 	
 }
 //==============================================================================================
-int MUX74CH165Reader::Init(){
+void MUX74CH165Reader::Init(){
   // Initialize our digital pins...
   mux_in_ploadPin_        = MUX_IN_LATCH_PL;  
   mux_in_clockEnablePin_  = MUX_IN_CE;  
@@ -34,7 +34,6 @@ int MUX74CH165Reader::Init(){
   digitalWrite(mux_in_clockPin_, LOW);
   digitalWrite(mux_in_ploadPin_, HIGH);
   
-  return 0;
 }
 //==============================================================================================
 // This function is essentially a "shift-in" routine reading the

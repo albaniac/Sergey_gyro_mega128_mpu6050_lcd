@@ -49,7 +49,7 @@ char * MyMenu::GoParent() {
 char * MyMenu::GoChild() {
   if (current_->child == 0) {
 	if (current_->buttons_action != 0) {
-	  g_timer.add_task(current_->buttons_action, ACTION_PERIOD);
+	  g_timer_p->AddTask(current_->buttons_action, ACTION_PERIOD);
 	}
 	return current_->name;
   }
@@ -121,7 +121,7 @@ void MyMenu::Init(){
   LinkParentChild(&node_rl_weel_, &node_rl_set_min_);
   
   node_rl_set_max_.name = "Set Max";
-  LinkParentChild(&node_rl_weel, &node_rl_set_max_);
+  LinkParentChild(&node_rl_weel_, &node_rl_set_max_);
   LinkBackNext(&node_rl_set_min_, &node_rl_set_max_);
 
   LinkBackNext(&node_rl_set_max_, &node_rl_set_min_);
@@ -223,7 +223,7 @@ void MyMenu::Init(){
 
   LinkBackNext(&node_hardware_, &node_calibrate_); // loop to colibrate
 
-  root_ = &node_menu;
+  root_ = &node_menu_;
   current_ = root_;
 }
 

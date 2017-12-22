@@ -1,6 +1,6 @@
 #include "buttons.h"
 #include "mux74ch165read.h"
-#include <Arduino>
+#include <Arduino.h>
 
 //=======================================================================================
 
@@ -75,7 +75,7 @@ uint16_t Buttons::Update(){
 
 //=======================================================================================
 
-bool Buttons::WasButton_pressed(int num){
+bool Buttons::WasButtonPressed(int num){
   bool st = false;
   if (buttons[num].was_pressed){
     st = true;
