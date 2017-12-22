@@ -2,9 +2,6 @@
 #ifndef MY_TIMER_H
 #define MY_TIMER_H
 
-//#include <avr/io.h>
-//#include "common_makros.h"
-
 typedef void (*TTask)(void);
 
 struct MySoftTimerTask {
