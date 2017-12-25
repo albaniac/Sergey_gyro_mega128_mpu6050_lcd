@@ -17,8 +17,8 @@ enum CalibratedObjects {
 	WeelFirstRight,
 	WeelLastLeft,
 	WeelLastRight,
-	Compressor,
-	NoName
+	DeviceCompressor,
+	NoObjects
 };
 #define CALIBRATEDOBJECTSCOUNT 5
 #define WEELSMAXCOUNT 4

@@ -14,7 +14,7 @@ public:
 	
 private:
 	
-}
+};
 
 extern EEPROMWorker* g_eeprom_p;
 #endif

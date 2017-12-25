@@ -7,4 +7,4 @@ uint32_t ADCHolder::GetRaw(){
 	else{
 		return analogRead(pin_num);
 	}
-;
+};

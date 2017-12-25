@@ -24,6 +24,9 @@ public:
 //=======================================================================================
 class Weel{
 public:
+  Weel(){
+    name_ = NoObjects;
+  }
 	CalibratedObjects name_;
 	Calibration calibration_;
 	ADCHolder adc_holder_;
@@ -31,6 +34,9 @@ public:
 //=======================================================================================
 class Compressor{
 public:
+  Compressor(){
+    name_ = NoObjects;
+  }
 	CalibratedObjects name_;
 	Calibration calibration_;
 	ADCHolder adc_holder_;	
@@ -39,7 +45,7 @@ public:
 class DataManager {
 public:
 	DataManager();
-	Init();
+	uint8_t Init();
 	
 private:
 	HardWare weels_t_;
