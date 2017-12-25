@@ -7,6 +7,7 @@
 #include "buttons.h"
 #include "mux74ch165read.h"
 #include "mux74ch595dwrite.h"
+#include "data_manager.h"
 
 #include <avr/wdt.h>
 
