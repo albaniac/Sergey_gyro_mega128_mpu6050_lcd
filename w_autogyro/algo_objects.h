@@ -7,21 +7,21 @@
 
 //=======================================================================================
 enum HardWare {
-	OnlyFirstWeels,
-	OnlyLastWeels,
-	AllWeels,
-	NoCompressor,
-	YesCompressor,
-	NoName
+	OnlyFirstWeels = 1,
+	OnlyLastWeels = 2,
+	AllWeels = 3,
+	NoCompressor = 4,
+	YesCompressor = 5,
+	NoName = 6
 };
 //=======================================================================================
 enum CalibratedObjects {
-	WeelFirstLeft,
-	WeelFirstRight,
-	WeelLastLeft,
-	WeelLastRight,
-	DeviceCompressor,
-	NoObjects
+	WeelFirstLeft = 1,
+	WeelFirstRight = 2,
+	WeelLastLeft = 3,
+	WeelLastRight = 4,
+	DeviceCompressor = 5,
+	NoObjects = 6
 };
 #define CALIBRATEDOBJECTSCOUNT 5
 #define WEELSMAXCOUNT 4
