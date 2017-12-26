@@ -16,8 +16,12 @@ HardWare EEPROMWorker::ReadWeelsT(){
 	return AllWeels;
 };
 //=======================================================================================
-uint8_t EEPROMWorker::GetCalibrationByName(CalibratedObjects name, uint32_t& min, uint32_t& max, uint32_t& delta ){
-	return 0;
+uint8_t EEPROMWorker::GetCalibrationByName(CalibratedObjects name, Calibration& calibration ){
+  return 0;
+};
+//=======================================================================================
+uint8_t EEPROMWorker::SetCalibrationByName(CalibratedObjects name, Calibration calibration){
+  return 0;
 };
 //=======================================================================================
 

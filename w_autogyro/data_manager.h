@@ -7,21 +7,6 @@
 #include <Arduino.h>
 
 //=======================================================================================
-class Calibration{
-public:	
-	Calibration(){
-		max = ADC_MAX;
-		min = ADC_MIN;
-		delta = (ADC_MAX + ADC_MIN ) / 2;
-		was_updated = false;
-	};
-	
-	uint32_t max;
-	uint32_t min;
-	uint32_t delta;
-	bool was_updated;
-};
-//=======================================================================================
 class Weel{
 public:
   Weel(){
@@ -46,7 +31,10 @@ class DataManager {
 public:
 	DataManager();
 	uint8_t Init();
-	
+
+	uint8_t SetCalibrationMaxByName(CalibratedObjects name, uint32_t max);
+	uint8_t SetCalibrationMinByName(CalibratedObjects name, uint32_t min);
+
 private:
 	HardWare weels_t_;
 	HardWare compressor_t_;

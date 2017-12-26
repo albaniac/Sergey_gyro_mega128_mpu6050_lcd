@@ -10,7 +10,8 @@ public:
 	EEPROMWorker();
 	HardWare ReadCompressorT();
 	HardWare ReadWeelsT();
-	uint8_t GetCalibrationByName(CalibratedObjects name, uint32_t& min, uint32_t& max, uint32_t& delta );
+	uint8_t GetCalibrationByName(CalibratedObjects name, Calibration& calibration );
+	uint8_t SetCalibrationByName(CalibratedObjects name, Calibration calibration);
 	
 private:
 	
