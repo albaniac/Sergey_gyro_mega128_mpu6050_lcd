@@ -22,8 +22,9 @@ public:
 //=======================================================================================
 class Compressor{
 public:
-  Compressor(){
-    name_ = NoObjects;
+  Compressor()
+  : name_(NoObjects)
+  {
   }
 	CalibratedObjects name_;
 	Calibration calibration_;
@@ -32,15 +33,17 @@ public:
 //=======================================================================================
 class GyroScopeDevice{
 public:
-  GyroScopeDevice(){
-    name_ = CaliObbjGyroScope;
-	x_max_ = 0;
-	x_min_ = 0;
-	x_zerro_ = 0;
-	y_max_ = 0;
-	y_min_ = 0;
-	y_zerro_ = 0;
+  GyroScopeDevice()
+  : name_(CaliObbjGyroScope),
+  x_max_(0),
+  x_min_(0),
+  x_zerro_(0),
+  y_max_(0),
+  y_min_(0),
+  y_zerro_(0) 
+  {
   }
+  
 	CalibratedObjects name_;
 	double x_max_;
 	double x_min_;
