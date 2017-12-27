@@ -19,7 +19,7 @@ struct MySoftTimerTask {
 class MySoftTimer {
   private:
   
-  static const unsigned char MAX_TASK_COUNT = 32;
+  static const unsigned char MAX_TASK_COUNT = 64;
 	MySoftTimerTask tasks_[MAX_TASK_COUNT];
   long prescaller_;
   

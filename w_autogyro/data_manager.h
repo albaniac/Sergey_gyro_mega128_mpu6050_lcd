@@ -3,18 +3,21 @@
 #define MY_DATA_MANAGER_H
 
 #include "adc_pressure_metr.h"
+#include "pressurer.h"
 #include "algo_objects.h"
 #include <Arduino.h>
 
 //=======================================================================================
 class Weel{
 public:
-  Weel(){
-    name_ = NoObjects;
+  Weel()
+  : name_(NoObjects)
+  {
   }
 	CalibratedObjects name_;
 	Calibration calibration_;
 	ADCHolder adc_holder_;
+	Pressurer pressurer_;
 };
 //=======================================================================================
 class Compressor{
