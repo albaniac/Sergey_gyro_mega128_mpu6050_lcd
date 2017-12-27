@@ -8,10 +8,18 @@
 class EEPROMWorker{
 public:
 	EEPROMWorker();
+
 	HardWare ReadCompressorT();
+	void WriteCompressorT(HardWare hardware);
+
 	HardWare ReadWeelsT();
-	uint8_t GetCalibrationByName(CalibratedObjects name, Calibration& calibration );
-	uint8_t SetCalibrationByName(CalibratedObjects name, Calibration calibration);
+	void WriteWeelsT(HardWare hardware);
+
+	uint8_t GetFromMemoryCalibrationByName(CalibratedObjects name, Calibration& calibration );
+	uint8_t SetInMemoryCalibrationByName(CalibratedObjects name, Calibration calibration);
+
+	uint8_t GetFromMemoryGyroZerroCalibration(double& x, double& y);
+	uint8_t SetInMemoryGyroZerroCalibration(double x, double y);
 	
 private:
 	

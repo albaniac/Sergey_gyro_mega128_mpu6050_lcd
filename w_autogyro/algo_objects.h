@@ -16,14 +16,15 @@ enum HardWare {
 };
 //=======================================================================================
 enum CalibratedObjects {
+	NoObjects = 0,
 	WeelFirstLeft = 1,
 	WeelFirstRight = 2,
 	WeelLastLeft = 3,
 	WeelLastRight = 4,
 	DeviceCompressor = 5,
-	NoObjects = 6
+	CaliObbjGyroScope = 6
 };
-#define CALIBRATEDOBJECTSCOUNT 5
+#define CALIBRATEDOBJECTSCOUNT 6
 #define WEELSMAXCOUNT 4
 //=======================================================================================
 class Calibration{

@@ -20,7 +20,7 @@ public:
 	pin_num = -1;	
   }
   int pin_num;
-  uint32_t GetRaw();
+  uint16_t GetRaw();
 };
 
 #endif

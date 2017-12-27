@@ -1,6 +1,6 @@
 #include "adc_pressure_metr.h"
 
-uint32_t ADCHolder::GetRaw(){
+uint16_t ADCHolder::GetRaw(){
 	if (pin_num < 0){
 		return ADC_MAX+1;
 	}

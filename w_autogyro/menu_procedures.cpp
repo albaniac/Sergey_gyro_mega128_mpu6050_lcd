@@ -1,5 +1,6 @@
 #include "menu_procedures.h"
 #include "menu.h"
+#include "data_manager.h"
 
 #define MENUDEBUG
 
@@ -10,75 +11,124 @@
 #endif
 
 //=======================================================================================
-void ProcNodeLFSetMin(void){
+void ProcNodeLFSetMin(void){ // ready
 	#ifdef MENUDEBUG
   //Serial.println(__FUNCTION__);
   Serial.println(F("ProcNodeLFSetMin"));
 	#endif
+	
+	//#ifndef MENUDEBUG
+	g_data_manager_p->SetCalibrationMinByName(WeelFirstLeft);
+	//#endif
   
 };
 //=======================================================================================
-void ProcNodeLFSetMax(void){
+void ProcNodeLFSetMax(void){ // ready
 	#ifdef MENUDEBUG
   //Serial.println(__FUNCTION__);
   Serial.println(F("ProcNodeLFSetMax"));
 	#endif
+	
+	//#ifndef MENUDEBUG
+	g_data_manager_p->SetCalibrationMaxByName(WeelFirstLeft);
+	//#endif
+  
 };
 //=======================================================================================
-void ProcNodeRFSetMin(void){
+void ProcNodeRFSetMin(void){ // ready
 	#ifdef MENUDEBUG
   //Serial.println(__FUNCTION__);
   Serial.println(F("ProcNodeRFSetMin"));
 	#endif
+	
+	//#ifndef MENUDEBUG
+	g_data_manager_p->SetCalibrationMinByName(WeelFirstRight);
+	//#endif
+  
 };
 //=======================================================================================
-void ProcNodeRFSetMax(void){
+void ProcNodeRFSetMax(void){ // ready
 	#ifdef MENUDEBUG
   //Serial.println(__FUNCTION__);
   Serial.println(F("ProcNodeRFSetMax"));
 	#endif
+	
+	//#ifndef MENUDEBUG
+	g_data_manager_p->SetCalibrationMaxByName(WeelFirstRight);
+	//#endif
+  
 };
 //=======================================================================================
-void ProcNodeLLSetMin(void){
+void ProcNodeLLSetMin(void){ // ready
 	#ifdef MENUDEBUG
-  //Serial.println(__FUNCTION__);
-  Serial.println(F("ProcNodeLLSetMin"));
+	//Serial.println(__FUNCTION__);
+	Serial.println(F("ProcNodeLLSetMin"));
 	#endif
+	
+	//#ifndef MENUDEBUG
+	g_data_manager_p->SetCalibrationMinByName(WeelLastLeft);
+	//#endif
+  
 };
 //=======================================================================================
-void ProcNodeLLSetMax(void){
+void ProcNodeLLSetMax(void){ // ready
 	#ifdef MENUDEBUG
-  //Serial.println(__FUNCTION__);
-  Serial.println(F("ProcNodeLLSetMax"));
+	//Serial.println(__FUNCTION__);
+	Serial.println(F("ProcNodeLLSetMax"));
 	#endif
+	
+	//#ifndef MENUDEBUG
+	g_data_manager_p->SetCalibrationMaxByName(WeelLastLeft);
+	//#endif
+  
 };
 //=======================================================================================
-void ProcNodeRLSetMin(void){
+void ProcNodeRLSetMin(void){ // ready
 	#ifdef MENUDEBUG
-  //Serial.println(__FUNCTION__);
-  Serial.println(F("ProcNodeRLSetMin"));
+	//Serial.println(__FUNCTION__);
+	Serial.println(F("ProcNodeRLSetMin"));
 	#endif
+	
+	//#ifndef MENUDEBUG
+	g_data_manager_p->SetCalibrationMinByName(WeelLastRight);
+	//#endif
+  
 };
 //=======================================================================================
-void ProcNodeRLSetMax(void){
+void ProcNodeRLSetMax(void){ // ready
 	#ifdef MENUDEBUG
-  //Serial.println(__FUNCTION__);
-  Serial.println(F("ProcNodeRLSetMax"));
+	//Serial.println(__FUNCTION__);
+	Serial.println(F("ProcNodeRLSetMax"));
 	#endif
+	
+	//#ifndef MENUDEBUG
+	g_data_manager_p->SetCalibrationMaxByName(WeelLastRight);
+	//#endif
+  
 };
 //=======================================================================================
-void ProcNodeCompressorSetMin(void){
+void ProcNodeCompressorSetMin(void){ // ready
 	#ifdef MENUDEBUG
-  //Serial.println(__FUNCTION__);
-  Serial.println(F("ProcNodeCompressorSetMin"));
+	//Serial.println(__FUNCTION__);
+	Serial.println(F("ProcNodeCompressorSetMin"));
 	#endif
+	
+	//#ifndef MENUDEBUG
+	g_data_manager_p->SetCalibrationMinByName(DeviceCompressor);
+	//#endif
+  
 };
 //=======================================================================================
-void ProcNodeCompressorSetMax(void){
+void ProcNodeCompressorSetMax(void){ // ready
 	#ifdef MENUDEBUG
   //Serial.println(__FUNCTION__);
   Serial.println(F("ProcNodeCompressorSetMax"));
 	#endif
+	
+	//#ifndef MENUDEBUG
+	g_data_manager_p->SetCalibrationMaxByName(DeviceCompressor);
+	//#endif
+  
 };
 //=======================================================================================
 void ProcNodeGyroXSetMin(void){
@@ -104,22 +154,25 @@ void ProcNodeGyroYSetMin(void){
 //=======================================================================================
 void ProcNodeGyroYSetMax(void){
 	#ifdef MENUDEBUG
-  //Serial.println(__FUNCTION__);
-  Serial.println(F("ProcNodeGyroYSetMax"));
+	//Serial.println(__FUNCTION__);
+	Serial.println(F("ProcNodeGyroYSetMax"));
 	#endif
 };
 //=======================================================================================
-void ProcNodeResetGyroZerro(void){
+void ProcNodeResetGyroZerro(void){ // ready
 	#ifdef MENUDEBUG
-  //Serial.println(__FUNCTION__);
-  Serial.println(F("ProcNodeResetGyroZerro"));
+	//Serial.println(__FUNCTION__);
+	Serial.println(F("ProcNodeResetGyroZerro"));
 	#endif
+	
+	g_data_manager_p->SetCalibrationGyroZerro();
+	
 };
 //=======================================================================================
 void ProcNodeResetWeels(void){
 	#ifdef MENUDEBUG
-  //Serial.println(__FUNCTION__);
-  Serial.println(F("ProcNodeResetWeels"));
+	//Serial.println(__FUNCTION__);
+	Serial.println(F("ProcNodeResetWeels"));
 	#endif
 };
 //=======================================================================================
@@ -130,38 +183,53 @@ void ProcNodeResetCompressor(void){
 	#endif
 };
 //=======================================================================================
-void ProcNodeHardFOnly(void){
+void ProcNodeHardFOnly(void){ // ready
 	#ifdef MENUDEBUG
-  //Serial.println(__FUNCTION__);
-  Serial.println(F("ProcNodeHardFOnly"));
+	//Serial.println(__FUNCTION__);
+	Serial.println(F("ProcNodeHardFOnly"));
 	#endif
+	
+	g_data_manager_p->SetHardWare(OnlyFirstWeels);
+	
 };
 //=======================================================================================
-void ProcNodeHardLOnly(void){
+void ProcNodeHardLOnly(void){ // ready
 	#ifdef MENUDEBUG
-  //Serial.println(__FUNCTION__);
-  Serial.println(F("ProcNodeHardLOnly"));
+	//Serial.println(__FUNCTION__);
+	Serial.println(F("ProcNodeHardLOnly"));
 	#endif
+	
+	g_data_manager_p->SetHardWare(OnlyLastWeels);
+	
 };
 //=======================================================================================
-void ProcNodeHardLF(void){
+void ProcNodeHardLF(void){ // ready
 	#ifdef MENUDEBUG
-  //Serial.println(__FUNCTION__);
-  Serial.println(F("ProcNodeHardLF"));
+	//Serial.println(__FUNCTION__);
+	Serial.println(F("ProcNodeHardLF"));
 	#endif
+	
+	g_data_manager_p->SetHardWare(AllWeels);
+	
 };
 //=======================================================================================
-void ProcNodeHardCompressorYes(void){
+void ProcNodeHardCompressorYes(void){ // ready
 	#ifdef MENUDEBUG
-  //Serial.println(__FUNCTION__);
-  Serial.println(F("ProcNodeHardCompressorYes"));
+	//Serial.println(__FUNCTION__);
+	Serial.println(F("ProcNodeHardCompressorYes"));
 	#endif
+	
+	g_data_manager_p->SetHardWare(YesCompressor);
+	
 };
 //=======================================================================================
-void ProcNodeHardCompressorNo(void){
+void ProcNodeHardCompressorNo(void){ // ready
 	#ifdef MENUDEBUG
-  //Serial.println(__FUNCTION__);
-  Serial.println(F("ProcNodeHardCompressorNo"));
+	//Serial.println(__FUNCTION__);
+	Serial.println(F("ProcNodeHardCompressorNo"));
 	#endif
+	
+	g_data_manager_p->SetHardWare(NoCompressor);
+	
 };
 //=======================================================================================
