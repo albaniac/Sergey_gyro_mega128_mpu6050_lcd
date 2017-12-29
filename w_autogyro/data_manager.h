@@ -29,6 +29,7 @@ public:
 	CalibratedObjects name_;
 	Calibration calibration_;
 	ADCHolder adc_holder_;	
+	Pressurer pressurer_;
 };
 //=======================================================================================
 class GyroScopeDevice{
@@ -64,7 +65,6 @@ public:
 	uint8_t SetCalibrationGyroZerro();
 	uint8_t SetHardWare(HardWare hard_ware);
 
-private:
 	HardWare weels_t_;
 	HardWare compressor_t_;
 	Weel weels_[WEELSMAXCOUNT]; // 
